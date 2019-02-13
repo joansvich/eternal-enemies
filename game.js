@@ -11,8 +11,6 @@ class Game {
   };
 
   startLoop(){
-    console.log('out of loop');
-
     this.player = new Player(this.canvas,3);
     const loop = () => {
 
@@ -53,6 +51,20 @@ class Game {
 
   checkAllCollisions(){
     this.player.checkScreen();
+    this.enemies.forEach((enemy,index) =>{
+      if(this.player.checkCollisionEnemy(enemy)){
+        this.player.loseLives();
+        this.enemies.splice(index,1);
+        if (this.player.lives === 0){
+          this.onGameOver();
+        }
+
+      }
+    })
+  }
+
+  gameOverCallback(callback){
+    this.onGameOver = callback;
   }
 
 }

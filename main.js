@@ -32,9 +32,10 @@ const main = () => {
 
     canvasElement.setAttribute('width',width);
     canvasElement.setAttribute('height',height);
-    
+
 
     const game = new Game(canvasElement);
+    game.gameOverCallback(buildGameOver);
     game.startLoop();
 
     const setPlayerDirection = (event) => {
