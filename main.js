@@ -11,7 +11,7 @@ const main = () => {
 
   const buildSplashScreen = () => {
     const splashScreen = buildDom(`
-      <h1>Hello</h1>
+      <h1>Eternal Enemies</h1>
       <button>Start</button>
     `);
     const startButton = document.querySelector('button');
@@ -32,11 +32,20 @@ const main = () => {
 
     canvasElement.setAttribute('width',width);
     canvasElement.setAttribute('height',height);
-
-    setTimeout(buildGameOver,3000);
+    
 
     const game = new Game(canvasElement);
     game.startLoop();
+
+    const setPlayerDirection = (event) => {
+      if (event.code === 'ArrowUp'){
+        game.player.setDirection(-1);
+      }
+      if (event.code === 'ArrowDown'){
+        game.player.setDirection(1);
+      }
+    }
+    document.addEventListener('keydown',setPlayerDirection);
 
   };
 
